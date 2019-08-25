@@ -1,0 +1,104 @@
+/* 全局设置 */
+body {
+  margin:0;
+  font-family: arial,verdana,helvetica,Microsoft Yahei,sans-serif;
+  -webkit-font-smoothing: antialiased;
+  color: #7e8793;
+}
+
+/* 主页头部 */
+    /* 全局 */
+.home-header {
+  background: url('../img/home-bg.png') no-repeat;
+  background-size: 100% auto; 
+  text-align: center;
+  padding: 1rem;
+}
+    /* 图片 */
+.home-header > img {
+  width: 75%;/* 这个宽度的意思不太明白 */
+  margin:1.3rem 0 2.0rem 0;/* 32px */
+  /* 相对字体长度单位 rem，相对于根字体的大小，根字体默认16px */
+}
+    /* 表单全局 */
+.home-header form {
+  background: white;
+  width: 100%;
+  margin: 0 auto;/* auto 居中 */
+  line-height: 2.4rem;/* 2.4*16 = 38.4px */
+  border-radius: 2.2rem;
+  margin-bottom: 0.5rem;
+}
+
+    /* 表单输入框 */
+    /* border边框,outline点击时的高亮边框 background 背景 none表示无 */
+.home-header form input {
+  width: 75%;
+  border: none;
+  outline: none;
+  color: #aaa;
+  font-size: 0.9rem; 
+}
+    /* 表单按钮 */
+.home-header form button {
+  font-size: 0.9rem;/* 0.9*16=14.4px */
+  /* font-weight: lighter;字体粗细：细 */
+  color: #5bd4c7;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+
+/* 页面分类 */
+    /* 全局 */
+.home-categories {
+  padding: 0 1rem;
+
+}
+    /* dt全局 */
+.home-categories dt {
+  display: flex;/* 弹性布局 */
+  align-items: center;/* 垂直居中，水平居中是text-align */
+  color: #333;
+}
+
+    /* dt中的img */
+.home-categories dt img {
+  height: 3rem;
+  margin-right: 1rem;/* 右外边距 */
+}
+
+    /* dd全局 */
+.home-categories dd {
+  /* margin: 0; */
+  margin:1rem -0.3rem 2.5rem;/* 为了抵消下面img的外边距,检查a元素与上面图片对齐 */
+}
+
+    /* dd中的a标签 */
+.home-categories dd .tag {
+  background: #f5f8f9;
+  color: #7e8793;
+  padding: 0.5rem 0.5rem;
+  display: inline-block;
+  border-radius: 1rem;
+  text-decoration: none;/* 去除下划线 */
+  margin: 0.2rem 0.3rem;
+  font-size: 0.8rem;
+}
+
+/* 主页底部 */
+    /* 全局 */
+.home-footer {
+  /* 不是纯粹的居中，因为是左对齐,所以是设置宽度再外边距为0的居中 */
+  width: 70%;
+  margin: 0 auto;
+  font-size: 0.75rem;/*字体设置*/
+}
+
+    /* p元素 */
+.home-footer p {
+  color: #919aa7;
+  /* p标签本来就有上下边距，要去除 */
+  margin: 0.25rem 0;
+}
