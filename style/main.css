@@ -102,3 +102,258 @@ body {
   /* p标签本来就有上下边距，要去除 */
   margin: 0.25rem 0;
 }
+
+
+
+
+
+/* list-page，定义flex布局，因为要频繁使用 */
+/* 分散对齐 */
+/* 目前list-header，list中的form，，list中的form中的inner，filter， job-list中的a加入flex布局 */
+.flex {
+  display: flex;
+  justify-content: space-between;
+  /* The remaining space is distributed between the flexbox/grid items.*/
+  /* 在每行上均匀分配弹性元素。相邻元素间距离相同。每行第一个元素与行首对齐，每行最后一个元素与行尾对齐。 */
+  /* 上面是水平排列 */
+  /* 下面是纵向排列,垂直居中 */
+  /* 
+  * https://developer.mozilla.org/zh-CN/docs/Web/CSS/justify-content
+  * https://cssreference.io/property/justify-content/
+  */
+  align-items: center;
+  /* The flexbox items are aligned at the center of the cross axis.
+  By default, the cross axis is vertical. This means the flexbox items will be centered vertically. */
+  /* 元素在侧轴居中。如果元素在侧轴上的高度高于其容器，那么在两个方向上溢出距离相同。 */
+  /* 
+  * https://developer.mozilla.org/zh-CN/docs/Web/CSS/align-items
+  * https://cssreference.io/property/align-items/
+   */
+}
+
+/* 列表头部 */
+    /* 全局 */
+.list-header {
+  padding: 0.8rem 1rem;
+}
+
+    /* 表单全局，设置百分百宽度，图片在左，搜索按钮在右 */
+.list-header form {
+  width: 100%;
+}
+
+    /* 表单的图片 */
+.list-header form img {
+  height: 1.2rem;
+}
+
+    /* 表单内部 */
+.list-header form .inner {
+  width: 100%;
+  background: #f5f8f9;
+  margin: 0 1rem;
+  /* margin左右空出1rem,inner外有图片和按钮，左是图片，右是按钮 */
+  line-height: 1.5rem;
+  /* 提高行高，即高度 */
+  padding: 0 1rem;
+}
+
+    /* 表单内部输入框，width小于form表单的宽度 */
+.list-header form .inner input {
+  width: 80%;
+  border: none;
+  background: transparent;
+  /* 透明背景 */
+  /* By default, the background color is transparent, basically meaning that there is no background color. */
+  outline: none;
+  /* focus时没有边框 */
+  color: #7e8793;
+}
+
+    /* 表单的按钮 */
+.list-header form button {
+  border:none;
+  background: none;
+  font-size: 0.9rem;
+  color: #5bd4c7;
+  flex-shrink: 0;
+  /* flex-shrink等于0不会收缩 */
+  /* flex-shrink 属性指定了 flex 元素的收缩规则。flex 元素仅在默认宽度之和大于容器的时候才会发生收缩，其收缩的大小是依据 flex-shrink 的值。 number>=0 */
+  /* The element will not shrink: it will retain the width it needs, and not wrap its content. Its siblings will shrink to give space to the target element. */
+  /* 
+  * https://developer.mozilla.org/zh-CN/docs/Web/CSS/flex-shrink 
+  * https://cssreference.io/property/flex-shrink/
+  */
+  padding: 0;
+  /* 去除padding，具体控制台element ctrl+shift+c 点击搜索按钮，再点击右边的computed看属性 */
+}
+
+
+/* 过滤器 */
+    /* 全局 */
+.filter {
+  padding: 0.8rem 1rem;
+  border: 1px solid #f5f8f9;
+}
+
+    /* 过滤器中的dl和dd */
+.filter dl, .filter dd {
+  /* 外边距等于0 */
+  margin: 0;
+}
+
+    /* 过滤器中的dt （经验） */
+.filter dt {
+  /* 字体大小 */
+  font-size:0.8rem;
+}
+
+    /* 过滤器中被选中的dt */
+.filter .active dt {
+  color: #333;
+}
+
+/* 怎么实现那个小箭头，当点击之后箭头方向从上到下 */
+    /* css3的伪元素 */
+.filter dt:after {
+  content: "";/* 必写 */
+  /* 这个inline-block很关键，行内块级元素既不会换一行也可以实现设置宽高 */
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  border: 1px solid #999;
+  margin-left: 0.5rem;
+  /* 如何把方框变成三角形？ */
+  border-style: solid none none solid;
+  transform: rotate(225deg);
+  /* 顺时针旋转225度，180+45 */
+  transform-origin: 2px 1px;
+  /* 偏移距离，右2px，上1px，右指的是x轴向右2px，上指的是y轴向上1px  */
+  /* 
+  * https://developer.mozilla.org/zh-CN/docs/Web/CSS/transform-origin
+  * https://cssreference.io/property/transform-origin/
+   */
+
+  /* 加箭头动画 */
+  transition: 0.2s all;
+  /* 
+  * https://developer.mozilla.org/zh-CN/docs/Web/CSS/transition
+  * https://cssreference.io/property/transition/
+   */
+}
+
+    /* 激活后的dt */
+.filter .active dt:after {
+  transform: rotate(45deg);
+  /* 选择45度，是根据开始时左边和上边来顺时针旋转45度，不要理解错了 */
+}
+
+
+    /* 过滤器中的dd */
+.filter dd {
+  /* 隐藏 */
+  display: none;
+}
+
+    /* 过滤器第一个dd */
+.filter .active dd {
+  /* .active中的dd显示，使用block,一般使用时才display*/
+  /* display: block; */
+  /* 黑色000,透明度0.3 */
+  background: rgba(0,0,0,0.3);
+  width: 100%;
+  height: 100vh;
+  /* 定义了相对视口长度单位：vw，vh,vmax 和 vmin */
+  /* vh:视口高度的 1/100。 */
+  /* 100代表视口高度沾满当前元素的空间 */
+  /* https://developer.mozilla.org/zh-CN/docs/Web/CSS/length */
+  position: absolute;
+  left: 0;
+  top: 90px;
+  /* 90=50+38  再加2因为有边框 */
+}  
+
+    /* 过滤器第一个dd的ul */
+.filter .active dd ul {
+  margin: 0;
+  padding: 0;
+  /* 覆盖了260行中的100vh，258行背景 */
+  background: #fff;
+}
+
+    /* 过滤器中第一个dd的li */
+.filter .active dd li {
+  line-height: 3rem;
+  /* 195行.filter设置了1rem的内边距 */
+  /* 这里是文本缩进，弥补了1rem */
+  text-indent: 1rem; 
+  color: #aaa;
+}
+
+    /* 过滤器中第一个dd中被选中的ul */
+.filter .active dd li.active {
+  background: #f5f8f9;
+  color: #333;
+}
+
+/* 工作列表 */
+    /* 全局 */
+.job-list {
+  margin: 0;
+  padding: 0;
+}
+
+    /*  */
+.job-item {
+  margin: 1rem;
+  padding-bottom: 1rem;
+  /* 设置padding的理由是内边距可以被点击，而margin不可用被点击 */
+  color: #7e8793;
+  /* 去除下划线 */
+  text-decoration: none;
+  /* 加分隔线，但线撑满整行，只能把308行padding改成margin,然后加上padding-bottom,为了使分隔线往下1rem*/
+  border-bottom: 1px solid #f5f8f9;
+}
+
+    /* 图片 */
+.job-item > img {
+  height: 3.5rem;
+
+}
+
+    /* 文本全局 */
+.job-item .text {
+  width: 100%;
+  /* margin-left左外边距 */
+  margin-left: 1rem;
+}
+
+    /* 标题 */
+.job-item .title {
+  color: #333333;
+  font-size: 0.9rem;
+}
+
+    /* 标题下的工资，要使标题和工资之间左右分散，加flex布局 */
+.job-item .title .salary {
+  color: #fc6c38;
+}
+
+    /* 公司 */
+.job-item .company {
+  color: #333333;
+  font-size: 0.8rem;
+  /* 加上下margin */
+  margin: 0.2rem 0;
+}
+
+    /* 属性（地点，工作年限，学历） */
+.job-item .props {
+  font-size: 0.8rem;
+}
+
+.job-item .props span {
+  margin-right: 0.5rem;
+}
+
+
