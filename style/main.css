@@ -6,6 +6,59 @@ body {
   color: #7e8793;
 }
 
+* {
+  /* 有padding只是往内部挤压 */
+  /* 
+  * https://developer.mozilla.org/zh-CN/docs/Web/CSS/box-sizing
+  * https://cssreference.io/property/box-sizing/
+   */
+  box-sizing: border-box;
+}
+
+/* 分散对齐 */
+/* 目前list-header，list中的form，，list中的form中的inner，filter， job-list中的a加入flex布局 */
+.flex {
+  display: flex;
+  justify-content: space-between;
+  /* The remaining space is distributed between the flexbox/grid items.*/
+  /* 在每行上均匀分配弹性元素。相邻元素间距离相同。每行第一个元素与行首对齐，每行最后一个元素与行尾对齐。 */
+  /* 上面是水平排列 */
+  /* 下面是纵向排列,垂直居中 */
+  /* 
+  * https://developer.mozilla.org/zh-CN/docs/Web/CSS/justify-content
+  * https://cssreference.io/property/justify-content/
+  */
+  align-items: center;
+  /* The flexbox items are aligned at the center of the cross axis.
+  By default, the cross axis is vertical. This means the flexbox items will be centered vertically. */
+  /* 元素在侧轴居中。如果元素在侧轴上的高度高于其容器，那么在两个方向上溢出距离相同。 */
+  /* 
+  * https://developer.mozilla.org/zh-CN/docs/Web/CSS/align-items
+  * https://cssreference.io/property/align-items/
+   */
+}
+
+/* 内边距 */
+/* 这个必加，只要添加了class，就实现内边距，很方便 */
+.padded {
+  padding: 1rem;
+}
+
+/* 按钮（detail.html使用） */
+.btn {
+  border: none;
+  font-size: 0.9rem;
+  padding: 0.5rem 1.2rem;
+  border-radius: 2rem;
+}
+
+/* 浅色（detail.html使用。数据来源：企查查） */
+.grey {
+  color:#9fa3b0;
+}
+
+
+/* index */
 /* 主页头部 */
     /* 全局 */
 .home-header {
@@ -108,28 +161,7 @@ body {
 
 
 /* list-page，定义flex布局，因为要频繁使用 */
-/* 分散对齐 */
-/* 目前list-header，list中的form，，list中的form中的inner，filter， job-list中的a加入flex布局 */
-.flex {
-  display: flex;
-  justify-content: space-between;
-  /* The remaining space is distributed between the flexbox/grid items.*/
-  /* 在每行上均匀分配弹性元素。相邻元素间距离相同。每行第一个元素与行首对齐，每行最后一个元素与行尾对齐。 */
-  /* 上面是水平排列 */
-  /* 下面是纵向排列,垂直居中 */
-  /* 
-  * https://developer.mozilla.org/zh-CN/docs/Web/CSS/justify-content
-  * https://cssreference.io/property/justify-content/
-  */
-  align-items: center;
-  /* The flexbox items are aligned at the center of the cross axis.
-  By default, the cross axis is vertical. This means the flexbox items will be centered vertically. */
-  /* 元素在侧轴居中。如果元素在侧轴上的高度高于其容器，那么在两个方向上溢出距离相同。 */
-  /* 
-  * https://developer.mozilla.org/zh-CN/docs/Web/CSS/align-items
-  * https://cssreference.io/property/align-items/
-   */
-}
+
 
 /* 列表头部 */
     /* 全局 */
@@ -156,6 +188,8 @@ body {
   line-height: 1.5rem;
   /* 提高行高，即高度 */
   padding: 0 1rem;
+  border-radius: 0.5rem;
+  color:#8b96a6;
 }
 
     /* 表单内部输入框，width小于form表单的宽度 */
@@ -205,7 +239,7 @@ body {
     /* 过滤器中的dt （经验） */
 .filter dt {
   /* 字体大小 */
-  font-size:0.8rem;
+  font-size:0.75rem;
 }
 
     /* 过滤器中被选中的dt */
@@ -303,7 +337,7 @@ body {
   padding: 0;
 }
 
-    /*  */
+    /* 工作项 */
 .job-item {
   margin: 1rem;
   padding-bottom: 1rem;
@@ -337,6 +371,7 @@ body {
     /* 标题下的工资，要使标题和工资之间左右分散，加flex布局 */
 .job-item .title .salary {
   color: #fc6c38;
+  font-size: 1.25rem;
 }
 
     /* 公司 */
@@ -351,9 +386,359 @@ body {
 .job-item .props {
   font-size: 0.8rem;
 }
-
+    /* 属性（地点，工作年限，学历）的span标签（加间隔） */
 .job-item .props span {
   margin-right: 0.5rem;
 }
 
 
+
+/* detail */
+/* 具体细节 */
+  /* 头部导航 */
+    /* 左：图片 */
+.top-bar img {
+  height: 1rem;
+}
+    
+    /* 右：表单 */
+.top-bar form {
+  width: 36%;
+  border: 1px solid #5bd4c7;
+  border-radius: 2rem;
+  padding: 0 0.5rem 0 0.8rem; 
+}
+
+    /* 表单中的输入框 */
+.top-bar form input {
+  /* 调整border，background为none很有用 */
+  border: none;
+  background: none;
+  width: 60%;
+  line-height: 1.3rem;
+  color: #aaa;
+  outline: none;
+  font-size: 0.8rem;
+}
+
+    /* 表单中的按钮 */
+.top-bar form button {
+  border: none;
+  /* 注意这里是css中引用图片，所以路径要写好 ../是上层文件 */
+  /* 至于background要自己看 */
+  background: url("../img/icons.png") no-repeat top center;
+  /* auto 居中 注意是100% */
+  background-size:100% auto;
+  width: 1rem;
+  height: 1rem;
+  /* 1*16=16px */
+}
+
+  /* 工作信息 */
+    /* 全局 */
+.job-info {
+  background:#62d5c8;
+  color: #fff;
+}
+
+    /* 标题 */
+.job-info .title {
+  font-size: 1.2rem;
+}
+    /* 属性 */
+.job-info .props {
+  font-size: 0.8rem;
+  margin: 0.5rem 0;
+}
+
+    /* 属性中的竖线效果（加margin分隔） */
+.job-info .props .items i {
+  display: inline-block;
+  width: 1px;
+  height: 0.8rem;
+  background: #fff;
+  margin: 0 0.5rem;
+}
+
+    /* 标签 */
+.job-info .tags span {
+  border: 1px solid #fff;
+  padding: 0.2rem 0.5rem;
+  border-radius: 2rem;
+  font-size: 0.75rem;
+}
+
+  /* 用户信息 */
+    /* 背景设置 */
+.user-info {
+  background: #eefbf9;
+}
+    /* 图片 */
+.user-info > img {
+  /* 高度+圆角 实现圆形 */
+  height: 3.5rem;
+  border-radius: 3.5rem;
+}
+
+    /* 信息 */
+.user-info .info {
+  /* 宽度自己设置，为了使感兴趣别离这么远 */
+  width: 35%;
+  /* 外边距，这个实在没办法，左外边距设置负才能靠左，因为flex布局，中间是有间隔 */
+  margin: 0 1rem 0 -1.5rem;
+}
+
+    /* 名字 */
+.user-info .name {
+  color:#333;
+  font-size: 1rem;
+}
+
+    /* 名字中的like */
+.user-info .name .like {
+  font-size: 0.8rem;
+  color: #fb7042;
+}    
+
+.user-info .desc {
+  font-size: 0.8rem;
+  color: #9fa3af;
+  margin-top:1rem;
+}
+
+    /* 按钮 */
+.user-info > button {
+  background: #62d5c8;
+  color: #fff;
+  /* info添加左右margin，把按钮挤扁了 */
+  /* 防止不被挤扁，直接flex-shrink：0 */
+  flex-shrink: 0;
+}
+
+  /* 工作详情 */
+    /* h3介绍 */
+.job-detail h3 {
+  color: #333;
+  font-size: 1rem;
+  /* 添加position，相对外层定位 */
+  position: relative;
+}
+
+    /* h3介绍下面的那条横杠 */
+.job-detail h3:after {
+  content:"";
+  width: 1rem;
+  height: 1px;
+  display: inline-block;
+  background: #62d5c8;
+  /* 下面要移位到下面一行 */
+  /* 相对h3绝对定位 */
+  position: absolute;
+  /* top指离h3顶部1.8rem，font-size为1rem，所以1.8rem在字体下面 */
+  top: 1.8rem;
+  /* left是离h3左部0，紧贴左部 */
+  left: 0;
+}
+
+    /* 文字 */
+.job-detail .text {
+  font-size: 0.95rem;
+  /* line-height是提升间隔 */
+  line-height: 1.6rem;
+}
+
+    /* ②标签div */
+.job-detail .tags {
+  /* 这是div，直接设置内边距即可 */
+  /* 若外边距不行，加内边距 */
+  padding-top: 0.5rem; 
+}
+
+    /* ②标签span */
+.job-detail .tags span {
+  /* 每一个span，而不是.class的div */
+  /* 和上面.text差不多，字体也是0.9rem */
+  font-size: 0.9rem;
+  color: #62d5c8;
+  border: 1px solid #62d5c8;
+  padding: 0.1rem 0.5rem;
+  border-radius: 1rem;
+  /* 下面两个margin是要求span内容有间隔 */
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem; 
+  /* 必加，如果是多行情况，变成块级行内元素 */
+  display: inline-block;
+}
+
+    /* 表格 */
+.job-detail .text table {
+  border: 1px solid #ebecef;
+  padding: 0.7rem 0.3rem;
+  font-size: 0.75rem; 
+}
+
+    /* 表头th */
+.job-detail .text th {
+  /* th表头默认字体加粗，现在改为默认 */
+  font-weight: normal; 
+  width: 6rem;
+  /* 颜色较浅 */
+  color: #9fa3b0;
+}
+
+    /* 表格内容td */
+.job-detail .text td {
+  width: 8rem;
+}
+
+
+
+  /* 公司名片 */
+    /* 全局 */
+.company-info {
+  background: #eefbf9;
+}
+
+    /* 左：图片，实现圆形效果 */
+.company-info img {
+  height: 3.5rem;
+  border-radius: 3.5rem;
+}
+
+    /* 右：div */
+.company-info .info  {
+  width: 100%;
+  margin-left: 1rem;
+}
+    /* 第一行名称 */
+.company-info .info .name {
+  color: #333;
+}
+    /* 第一行按钮 */
+.company-info .info .name .btn {
+  background: #62d5c8;
+  color: #fff;
+}
+
+    /* 第二行描述 */
+.company-info .info .desc {
+  font-size: 0.8rem;
+  color: #333;
+}
+
+    /* 第三行标签 */
+.company-info .info .tags {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  /* 加了flex布局后 */
+  justify-content: flex-start;
+  /*  从行首起始位置开始排列 */
+  /* 
+  * https://developer.mozilla.org/zh-CN/docs/Web/CSS/justify-content
+  * https://cssreference.io/property/justify-content/
+   */
+}
+
+    /* 第三行标签的i元素，实现竖线效果 */
+.company-info .info .tags i {
+  /* inline-block必写 */
+  display: inline-block;
+  /* 竖线是1px宽，高自己按照字体定，比如上面.tags的font-size是0.75rem，比0.75稍微大一点就行了，高度设置0.8rem */
+  width: 1px;
+  height: 0.8rem;
+  color: #ebecef;
+  margin: 0 0.5rem;
+}
+
+
+  /* 相似职位 */
+    /* h3 */
+.related-jobs h3 {
+  color: #7e8793;
+  font-weight: normal;
+  font-size: 0.9rem;
+}
+
+    /* 工作列表，ul标签 */
+.related-jobs ul {
+  list-style: none;
+}
+
+    /* a标签 */
+.related-jobs ul li > a {
+  /* 本来a标签有1rem的margin，现在不能有margin */
+  margin: 0;
+  /* 先定义border为none，再定义border-top也是可以的 */
+  border: none;
+  border-top: 1px solid #ebecef;
+  /* 这个使border-top与内容有一定的上下间隔，用padding也算是属于里面的内容，因为上面设置了margin为0,用padding撑大width*/
+  /* border-box不包含margin */
+  /* width = border + padding + 内容的宽度 */
+  /* https://developer.mozilla.org/zh-CN/docs/Web/CSS/box-sizing */
+  padding: 1rem 0;
+}
+
+    /* button按钮 */
+.related-jobs ul li .btn {
+  /* 加padding是撑大按钮的内容 */
+  padding: 0.4rem 1.2rem;
+  /* 加margin-top是增加间隔 */
+  margin-top: 0.2rem; 
+  border:1px solid #62d5c8;
+  color: #62d5c8;
+  /* 这个背景为none很关键，因为本来有背景 */
+  background: none;
+}
+
+
+  /* 推荐公司 */
+    /* h3 */
+.related-companies h3 {
+  font-size: 0.9rem;
+  /* 平常字体格式 */
+  font-weight: normal;
+  color: #7e8793;
+}
+
+    /* a标签 */
+.related-companies .tags a {
+  color: #7e8793;
+  text-decoration: none;
+  font-size: 0.8rem;
+  /* 这个margin自己调试，主要是margin-right和margin-bottom，增加间隔 */
+  margin: 0 1.3rem 0.2rem 0; 
+}
+
+
+  /* 详情底部 */
+    /* 全局 */
+.job-footer {
+  border-top: 1px solid #ebecef;
+  /* 先设置margin 上下左右都1rem*/
+  margin: 1rem;
+  /* 后设置padding 上下1rem，左右0*/
+  padding: 1rem 0;
+  /* 没有下面a的margin，直接改line-height */
+  line-height: 1.5rem;
+}
+
+    /* a标签 */
+.breadcrumb-nav a {
+  color: #7e8793;
+  text-decoration: none;
+  /* 字体大小自己改下 */
+  font-size: 0.75rem;
+  /* 没有margin，基本完成了大部分 */
+  /* margin: 0 0.8rem 0.2rem 0; */
+}
+
+    /* i标签，实现小三角 */
+.breadcrumb-nav i {
+  /* inline-block+width+height+border+border-style+transform:rotate() */
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border: 1px solid #9fa3b0;
+  border-style: solid none none solid;
+  transform: rotate(135deg);
+}

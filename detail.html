@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="./style/main.css">
+</head>
+<body>
+  <div class="comtainer">
+    <!-- 凡是需要左右分散对齐的都可以使用flex布局，已经设置好了 -->
+    <!-- flex布局再温习:space-between。开始的内容津贴最左边，末尾的内容津贴最右边，中间的内容取决于有多少份，像space-between是任意向量两个内容都有间隔 -->
+
+    <!-- 头部导航 -->
+    <div class="top-bar flex padded">
+      <img src="./img/logo.png" alt="">
+      <form action="" class="flex">
+        <input type="text" placeholder="搜索职位">
+        <button class="search-icon"></button>
+      </form>
+    </div>
+
+    <!-- 工作信息 -->
+    <div class="job-info padded">
+      <!-- 一行内只有两处内容，用flex就很方便，左右分散 -->
+      <div class="title flex">
+        <!-- 两个span，行内元素 -->
+        <span>web前端</span>
+        <span class="salary">10k-15k</span>
+      </div>
+      <div class="props flex">
+        <!-- 两个div？我的猜测是中间用div，方便设置宽高 -->
+        <div class="items flex">
+          <!-- 将淑娴换成i标签，是为了增加相隔的距离，也是为了实现竖线的效果 -->
+          深圳 <i></i> 1-3年 <i></i> 本科
+        </div>
+        <div>
+          发布于7月24日
+        </div>
+      </div>
+      <div class="tags">
+        <span>angular.js</span>
+        <span>jquery</span>
+      </div>
+    </div>
+
+    <!-- 用户信息 -->
+    <!-- 看到明显的左中右布局，用flex -->
+    <div class="user-info flex padded">
+      <!-- 左:img -->
+      <img src="./img/avatar.png" alt="">
+      <!-- 中:div -->
+      <div class="info">
+      <!-- 这里加个name的class -->
+      <div class="name flex">
+        <span>王女士</span>
+        <!--  添加样式like -->
+        <span class="like">
+          <img src="./img/link-like.png" alt="">
+          感兴趣
+        </span>
+      </div>
+      <!-- 点是数字键1隔壁的，也就是tab上面的 -->
+      <div class="desc">软通动力·招聘hr</div>
+      </div>
+      <!-- 右:button -->
+      <button class="btn" type="button">立即沟通</button>
+      <!-- 立即沟通和下面的立即沟通样式没啥区别，用通用class:btn -->
+    </div>
+      
+    <div class="job-detail padded">
+      <!-- ① -->
+      <h3>职位描述</h3>
+      <div class="text">
+          热衷于web前端开发<br>熟悉框架，js<br>会使用多程语言，能迅速参与项目开发<br>统招本科以上学历
+      </div>
+
+      <!-- ② -->
+      <h3>团队介绍</h3>
+      <!-- 同样都是标签，所以采用同样的样式，class为tags -->
+      <div class="tags">
+        <span>公司氛围好</span>
+        <span>不打卡</span>
+        <span>领导nice</span>
+      </div>
+
+      <!-- ③ -->
+      <h3>公司介绍</h3>
+      <!-- 这里使用text的class -->
+      <div class="text">
+        软通动力信息技术（集团）有限公司： <br><br>软通动力信息技术（集团）有限公司（以下简称：软通动力）是中国领先的创新型软件及信息技术服务商，数字经济使能者。公司2001年成立于北京，立足中国，服务全球市场。经过17年发展，目前公司在全球36个城市设有90余个分支机构25个全球交付中心，员工总数50000+
+      </div>
+
+      <!-- ④ -->
+      <h3>工商信息</h3>
+      <div class="text">
+        <!-- 上面div -->
+        <!-- div变p -->
+        <p>软通动力信息技术（集团）有限公司</p>
+
+        <!-- 中间表格 -->
+        <table>
+          <!-- tr代表一行 -->
+          <tr>
+            <!-- 奇数列改成th，表头 -->
+            <!-- 可以分别给th设置宽度，td设置宽度 -->
+            <th>法人代表:</th><td>刘天文</td>
+            <th>注册资本:</th><td>3856.8758万美元</td>
+          </tr>
+          <tr>
+            <th>法人代表:</th><td>刘天文</td>
+            <th>注册资本:</th><td>3856.8758万美元</td>
+          </tr>
+        </table>
+
+        <!-- 下面div -->
+        <!-- div改p,中间隔着div，所以基本换行 -->
+        <p class="grey"><small>数据来源:企查查</small></p>
+      </div>
+
+      <!-- ⑤ -->
+      <h3>工作地址</h3>
+      <div class="map">
+
+      </div>  
+    </div>
+    
+
+    <!-- 公司名片 -->
+    <div class="company-info flex padded">
+      <!-- 左：图片 -->
+      <img src="./img/company-logo-1.png" alt="">
+
+      <!-- 右：div -->
+      <div class="info">
+        <div class="name flex">
+          <span>软通动力</span>
+          <button class="btn">关注该公司</button>
+        </div>
+        <div class="desc">软通动力信息技术（集团）有限公司</div>
+        <div class="tags flex">
+          计算机软件 <i></i>
+          已上市  <i></i>
+          10000人以上
+        </div>
+      </div>
+    </div>
+
+    <!-- 相似职位 -->
+    <div class="related-jobs padded">
+      <h3>相似职位</h3>
+      <ul class="job-list">
+        <li>
+          <!-- 复制之前的 -->
+            <a href="" class="job-item flex">
+                <img src="./img/company-logo.png" alt="">
+                <div class="text">
+                  <div class="title flex">
+                    web前端
+                    <span class="salary">10-15k</span>
+                  </div>
+                  <!-- flex布局：左右分散分布 -->
+                  <div class="flex">
+                    <div class="company">
+                      软通动力
+                    </div>
+                    <button type="button" class="btn">立即沟通</button>
+                  </div>
+                </div>
+              </a>
+        </li>
+        <li>
+          <a href="" class="job-item flex">
+              <img src="./img/company-logo.png" alt="">
+              <div class="text">
+                <div class="title flex">
+                  web前端
+                  <span class="salary">10-15k</span>
+                </div>
+                <!-- flex布局：左右分散分布 -->
+                <div class="flex">
+                  <div class="company">
+                    软通动力
+                  </div>
+                  <button type="button" class="btn">立即沟通</button>
+                </div>
+              </div>
+            </a>
+          </li>
+        <li>
+        <li>
+          <a href="" class="job-item flex">
+              <img src="./img/company-logo.png" alt="">
+              <div class="text">
+                <div class="title flex">
+                  web前端
+                  <span class="salary">10-15k</span>
+                </div>
+                <!-- flex布局：左右分散分布 -->
+                <div class="flex">
+                  <div class="company">
+                    软通动力
+                  </div>
+                  <button type="button" class="btn">立即沟通</button>
+                </div>
+              </div>
+            </a>
+          </li>
+        <li>
+          <li>
+              <a href="" class="job-item flex">
+                  <img src="./img/company-logo.png" alt="">
+                  <div class="text">
+                    <div class="title flex">
+                      web前端
+                      <span class="salary">10-15k<span>
+                    </div>
+                    <!-- flex布局：左右分散分布 -->
+                    <div class="flex">
+                      <div class="company">
+                        软通动力
+                      </div>
+                      <button type="button"class="btn">立即沟通</button>
+                    </div>
+                  </div>
+                </a>
+              </li>
+            <li>          
+                <li>
+                    <a href="" class="job-item flex">
+                        <img src="./img/company-logo.png" alt="">
+                        <div class="text">
+                          <div class="title flex">
+                            web前端
+                            <span class="salary">10-15k<span>
+                          </div>
+                          <!-- flex布局：左右分散分布 -->
+                          <div class="flex">
+                            <div class="company">
+                              软通动力
+                            </div>
+                            <button type="button"class="btn">立即沟通</button>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                  <li>          
+                      <li>
+                          <a href="" class="job-item flex">
+                              <img src="./img/company-logo.png" alt="">
+                              <div class="text">
+                                <div class="title flex">
+                                  web前端
+                                  <span class="salary">10-15k<span>
+                                </div>
+                                <!-- flex布局：左右分散分布 -->
+                                <div class="flex">
+                                  <div class="company">
+                                    软通动力
+                                  </div>
+                                  <button type="button"class="btn">立即沟通</button>
+                                </div>
+                              </div>
+                            </a>
+                          </li>
+                        <li>          
+                  <!-- ------------- -->
+
+        </li>          
+      </ul>
+    </div>
+    
+    <!-- 推荐公司 -->
+    <div class="related-companies padded">
+      <h3>推荐公司:</h3>
+      <div class="tags">
+        <a href="">觅优商旅云</a>
+        <a href="">深圳招聘</a>
+        <a href="">觅优商旅云</a>
+        <a href="">深圳招聘</a>
+        <a href="">觅优商旅云</a>
+        <a href="">深圳招聘</a>
+      </div>
+    </div>
+
+    <!-- 详情底部 -->
+    <!-- 因为底部上边框长度不能100%，所以不能设置padded，要在css中设置margin -->
+    <!-- 第二个class不知道啥意思 -->
+    <div class="job-footer breadcrumb-nav">
+      <a href="">首页</a> <i></i>
+      <a href="">深圳招聘·web前端招聘</a> <i></i>
+      <a href="">深圳web前端招聘</a> <i></i>
+      <a href="">软通web前端招聘</a> <i></i>
+    </div>
+  </div>
+</body>
+</html>
